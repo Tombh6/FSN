@@ -1,16 +1,9 @@
-const http=require('http')
-const fs= require('fs')
-const port=3000
-
-const server= http.createServer(function(req,res){
-res.write('Hello')
-res.end()
-})
-
-server.listen(port,function(error){
-if(error){
-    console.log('Something went wrong', error)
-}else{
-    console.log('Sever is listening on port ' + port)
-}
-})
+const express = require("express");
+const app = express();
+const port = 5000;
+const cors = require("cors");
+const bodyParser = require("body-parser");
+const { ObjectId } = require("mongodb");
+require("dotenv").config();
+const { MongoClient } = require("mongodb");
+//const uri = DB user
