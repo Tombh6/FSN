@@ -1,28 +1,25 @@
 import React, { createContext, useState } from "react";
 import "./App.css";
 import Header from "./components/Header/Header";
-import Home from "./components/Home/Home";
-import Register from "./components/Register/Register";
-import Login from "./components/Login/Login";
 import Contact from "./components/Contact/Contact";
-import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Allregister from "./components/Allregister/Allregister";
 import { NotificationContainer } from "react-notifications";
 import 'react-notifications/lib/notifications.css';
+import Footer from "./components/Footer/Footer";
 export const UserContext = createContext();
+
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState({});
 
   return (
-    <Contact/>
+    <Footer/>
     // <UserContext.Provider value={[loggedInUser, setLoggedInUser]}>
     //   <Router>
     //     <Routes>
     //       <Route path="/home">
     //         <Header />
-    //         <Home />
+    //         <Homepage />
     //       </Route>
     //       <Route exact path="/">
     //         <Header />
