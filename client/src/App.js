@@ -1,11 +1,10 @@
 import React, { createContext, useState } from "react";
 import "./App.css";
-import Navbar from "./components/Navbar/Navbar";
+import Homepage from "./features/Homepage/Homepage";
 import Contact from "./components/Contact/Contact";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { NotificationContainer } from "react-notifications";
-import 'react-notifications/lib/notifications.css';
-import Footer from "./components/Footer/Footer";
+import { Route, Routes, useNavigate } from "react-router-dom";
+import Navbar from "./components/Navbar/Navbar";
+
 export const UserContext = createContext();
 
 
@@ -14,10 +13,8 @@ function App() {
 
   return (
     <>
-      <Navbar />
-      <div>hello</div>
-      <Footer />
-    </>
+                <Navbar />
+</>
     // <UserContext.Provider value={[loggedInUser, setLoggedInUser]}>
     //   <Router>
     //     <Routes>

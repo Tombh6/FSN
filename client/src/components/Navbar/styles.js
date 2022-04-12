@@ -9,13 +9,25 @@ export const NavbarContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-size: 14px;
 `;
 
+export const Option = styled.div`
+    cursor: pointer;
+    color: ${ props => props.isSelect ? 'white' : '#ffffff95'};
+`
+export const Icon = styled.img`
+  background-color: lightgray;
+  border-radius: 50px;
+  width: 30px;
+  height: 30px;
+`
 export const Content = styled.div`
     display: flex;
     justify-content: space-around;
     color: white;
-    width: 30%;
+    width: 20%;
+    align-items: center;
 `
 
 export const Logo = styled.img`
