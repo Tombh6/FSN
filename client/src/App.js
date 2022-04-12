@@ -1,6 +1,6 @@
 import React, { createContext, useState } from "react";
 import "./App.css";
-import Header from "./components/Header/Header";
+import Navbar from "./components/Navbar/Navbar";
 import Contact from "./components/Contact/Contact";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { NotificationContainer } from "react-notifications";
@@ -13,7 +13,11 @@ function App() {
   const [loggedInUser, setLoggedInUser] = useState({});
 
   return (
-    <Footer/>
+    <>
+      <Navbar />
+      <div>hello</div>
+      <Footer />
+    </>
     // <UserContext.Provider value={[loggedInUser, setLoggedInUser]}>
     //   <Router>
     //     <Routes>
