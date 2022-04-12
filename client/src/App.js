@@ -13,7 +13,8 @@ function App() {
   const [loggedInUser, setLoggedInUser] = useState({});
 
   return (
-    <Footer/>
+    
+    <Contact/>
     // <UserContext.Provider value={[loggedInUser, setLoggedInUser]}>
     //   <Router>
     //     <Routes>
