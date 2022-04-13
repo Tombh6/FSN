@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { theme } from "../globalStyle/theme";
+import { theme } from "../../globalStyle/theme";
 
 export const NavbarContainer = styled.div`
   height: 75px;
