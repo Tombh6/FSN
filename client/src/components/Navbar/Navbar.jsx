@@ -2,11 +2,12 @@
 import { NavbarContainer, Content, Logo, Option, Icon } from './styles';
 import Button from '../Button/Button';
 import userIcon from '../../assets/user.png';
+import imgLogo from "../../assets/logo.jpeg";
 
 const Navbar = ({isSelect, isUserLogin}) => {
     return (
         <NavbarContainer>
-            <Logo></Logo>
+             <Logo src={imgLogo}></Logo>
             <Content>
                 <Option isSelect={true}>Home</Option>
                 <Option>Contact</Option>
