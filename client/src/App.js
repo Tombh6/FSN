@@ -1,6 +1,6 @@
 import React, { createContext, useState } from "react";
 import "./App.css";
-import Navbar from "./components/Navbar/Navbar";
+import Homepage from "./features/Homepage/Homepage";
 import Contact from "./components/Contact/Contact";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import 'react-notifications/lib/notifications.css';

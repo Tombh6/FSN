@@ -11,6 +11,16 @@ export const NavbarContainer = styled.div`
   font-size: 14px;
 `;
 
+export const Option = styled.div`
+    cursor: pointer;
+    color: ${ props => props.isSelect ? 'white' : '#ffffff95'};
+`
+export const Icon = styled.img`
+  background-color: lightgray;
+  border-radius: 50px;
+  width: 30px;
+  height: 30px;
+`
 export const Content = styled.div`
     display: flex;
     justify-content: space-around;

@@ -1,10 +1,11 @@
 import styled from "styled-components";
+import { theme } from "../globalStyle/theme";
 
 export const Container = styled.div`
   display: flex;
   height: 180px;
   width: 100%;
-  background-color: black;
+  background-color: ${theme.colors.grayscale};
   color: white;
   font-weight: 500;
   font-size: 1rem;

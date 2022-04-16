@@ -2,9 +2,10 @@ import React from "react";
 import { Container, Content, Section, Image, ColumnContainer } from "./styles";
 import downloadIos from "../../assets/download-ios.svg";
 import downloadAndriod from "../../assets/download-android.svg";
-import instagramIcon from "../../assets/instagram.svg";
-import facebookIcon from "../../assets/facebook.svg";
-import twitterIcon from "../../assets/twitter.svg";
+import instagramIcon from '../../assets/instagram.svg';
+import facebookIcon from '../../assets/facebook.svg';
+import twitterIcon from '../../assets/twitter.svg';
+
 
 const Footer = () => {
   return (
