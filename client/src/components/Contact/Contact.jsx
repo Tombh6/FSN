@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import emailjs from "emailjs-com";
-//import { Container, Content, Section, Image, ColumnContainer } from "./styles";
 import "./styles.css";
 
 const Result = () => {
