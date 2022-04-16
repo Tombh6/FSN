@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import { theme } from "../globalStyle/theme";
+import { theme } from "../../globalStyle/theme";
 
 export const ButtonStyled = styled.button`
   height: 36px;
   width: ${(props) =>
     props.size === "small"
-      ? `120px`
+      ? `90px`
       : props.size === "large"
       ? `714px`
       : "226px"};
@@ -13,7 +13,7 @@ export const ButtonStyled = styled.button`
   background: ${(props) =>
     props.variant === "secondery"
       ? theme.colors.secondary_grey
-      : theme.colors.primary_blue};
+      : theme.colors.grayscale};
   cursor: pointer;
   display: flex;
   justify-content: center;

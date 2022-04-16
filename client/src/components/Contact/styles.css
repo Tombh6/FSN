@@ -111,20 +111,6 @@ textarea {
   overflow: auto;
 }
 
-button {
-  background-color: #77bde0;
-  color: white;
-  height: 50px;
-  cursor: pointer;
-  margin-top: 30px;
-  margin-left: 220px;
-  font-size: 1.29em;
-  font-family: "Sniglet", cursive;
-  -webkit-transition: background-color 0.5s;
-  -moz-transition: background-color 0.5s;
-  -o-transition: background-color 0.5s;
-  transition: background-color 0.5s;
-}
 .reqError {
   color: #ff0000; /*Red Color*/
   font-weight: bold;
