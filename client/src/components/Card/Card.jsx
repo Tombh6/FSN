@@ -3,11 +3,11 @@ import logo from "../../assets/imageNotFound.svg";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import Button from "../Button/Button";
-
+import favoriteIcon from '../../assets/favorite-svgrepo-com.svg';
 
 import {
   BodyCard,
-  CardBtn,
+  FavoriteIcon,
   CardStyled,
   ImageCard,
   Description,
@@ -22,6 +22,7 @@ import {
 import { useEffect, useState } from "react";
 import { device } from "../../globalStyle/theme";
 import { useMediaQuery } from "react-responsive";
+import { Icon } from "../Button/style";
 
 const Card = ({ dates, location, description, image, title, rating }) => {
   const [imageError, setImageError] = useState(false);
@@ -58,6 +59,7 @@ const Card = ({ dates, location, description, image, title, rating }) => {
       <BodyCard>
         <Row>
           <DateCard>{moment.utc(dates).format("dddd MMM DD, YYYY")}</DateCard>
+          <FavoriteIcon src={favoriteIcon}/>
         </Row>
         <Title>{title}</Title>
         <Description>{description}</Description>

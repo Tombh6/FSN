@@ -56,6 +56,11 @@ export const BodyCard = styled.div`
 export const DateCard = styled.p`
   color: ${theme.colors.text_lightblue};
 `;
+
+export const FavoriteIcon = styled.img`
+  cursor: pointer;
+  width: 18px;
+`
 export const SourceCard = styled.p`
   color: ${theme.colors.text_lightblue};
   margin: 0px;

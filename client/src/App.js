@@ -3,59 +3,22 @@ import "./App.css";
 import Homepage from "./features/Homepage/Homepage";
 import Contact from "./components/Contact/Contact";
 import Navbar from "./components/Navbar/Navbar";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import 'react-notifications/lib/notifications.css';
 import Footer from "./components/Footer/Footer";
-import { Container, MainLayout, FilterContainer, ArticlesContainer, BodyContainer, DataContainer } from './styles';
-import SearchBar from "./components/SearchBar/SearchBar";
-import Filter from './components/Filter/Filter';
-import { countryOptions, MockCard } from "./mockData";
-import Card from "./components/Card/Card";
-import Articles from "./components/Articles/Articles";
+import { Container } from './styles';
+
 
 function App() {
   return (
     <Container>
       <Navbar/>
-      <SearchBar/>       
-      <MainLayout>
-          <FilterContainer>
-              <Filter
-                name="Location"
-                value="Location"
-                options={countryOptions}
-                onChangeValue={(value) => {
-                  // dispatch(filtersActions.setLanguage(value));
-                }}
-              ></Filter>
-              <Filter
-                name="When"
-                value="When"
-                options={countryOptions}
-                onChangeValue={(value) => {
-                  // dispatch(filtersActions.setLanguage(value));
-                }}
-              ></Filter>
-              <Filter
-                name="Category"
-                value="Category"
-                options={countryOptions}
-                onChangeValue={(value) => {
-                  // dispatch(filtersActions.setLanguage(value));
-                }}
-              ></Filter>
-          </FilterContainer>
-         
-          <BodyContainer>
-            <DataContainer>
-               <ArticlesContainer>
-                    {/* <Card title={MockCard.title} description={MockCard.description} dates={MockCard.dates} image={MockCard.image} /> */}
-                    <Articles results={30} articles={MockCard}/>
-               </ArticlesContainer>
-               </DataContainer>
-          </BodyContainer>
-          
-      </MainLayout>
+    <Routes>
+       <Route path='/' element={<Navigate to='/homepage'/>}/>
+        <Route path='/homepage' element={<Homepage />}/>
+        <Route path='/contact' element={<Contact />}/>
+        {/* <Route path='/Favorites' element={<Favorites />}/> */}
+    </Routes>
       <Footer/>
     </Container>
    
