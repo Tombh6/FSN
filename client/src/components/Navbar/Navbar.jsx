@@ -9,16 +9,18 @@ import {
 import Button from "../Button/Button";
 import userIcon from "../../assets/user.svg";
 import imgLogo from "../../assets/logo.jpeg";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = ({ isSelect, isUserLogin }) => {
+  const navigate = useNavigate();
   return (
     <NavbarContainer>
       <LeftConatiner>
-        <Logo src={imgLogo}></Logo>
+        <Logo src={imgLogo} onClick={ () => navigate('/homepage')}></Logo>
         <Content>
-          <Option isSelect={true}>Home</Option>
-          <Option>Contact</Option>
-          <Option>Favorites</Option>
+          <Option isSelect={true} onClick={ () => navigate('/homepage')}>Home</Option>
+          <Option onClick={ () => navigate('/contact')}>Contact</Option>
+          <Option onClick={ () => navigate('/Favorites')}>Favorites</Option>
         </Content>
       </LeftConatiner>
       {isUserLogin ? (

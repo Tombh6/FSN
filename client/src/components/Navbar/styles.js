@@ -47,4 +47,5 @@ export const Content = styled.div`
 export const Logo = styled.img`
   height: 70%;
   padding-left: 20px;
+  cursor: pointer;
 `;
