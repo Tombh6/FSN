@@ -17,3 +17,13 @@ export const theme = {
       hover_option: "rgba(223, 224, 235, 0.41)"
     },
   };
+
+  const size = {
+    mobile: "600px",
+    tablet: "1190px",
+  };
+  export const device = {
+    mobile: `(max-width: ${size.mobile})`,
+    tablet: `(max-width: ${size.tablet})`,
+  };
+  

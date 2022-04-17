@@ -11,3 +11,16 @@ export const MainLayout = styled.div`
     padding: 10px ;
     background-color: ${theme.colors.bright_purple_blue};
 `
+
+export const FilterContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+  border-bottom: 1px solid #d9dbe9;
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+  & > div:not(:last-child) {
+    margin-right: 10px;
+  }
+`;
