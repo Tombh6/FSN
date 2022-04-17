@@ -109,62 +109,7 @@ export const countryOptions = [
       value: "us",
     },
   ];
-  export const languageOptions = [
-    { value: "", name: "All" },
-    {
-      name: "Arabic",
-      value: "ar",
-    },
-    {
-      name: "German",
-      value: "de",
-    },
-  
-    {
-      name: "English",
-      value: "en",
-    },
-    {
-      name: "Spanish",
-      value: "es",
-    },
-    {
-      name: "French",
-      value: "fr",
-    },
-    {
-      name: "Hebrew",
-      value: "he",
-    },
-    {
-      name: "Italian",
-      value: "it",
-    },
-    {
-      name: "Dutch",
-      value: "nl",
-    },
-    {
-      name: "Norwegian",
-      value: "no",
-    },
-    {
-      name: "Portuguese",
-      value: "pt",
-    },
-    {
-      name: "Russian",
-      value: "ru",
-    },
-    {
-      name: "Northern Sami",
-      value: "se",
-    },
-    {
-      name: "Zhuang",
-      value: "zh",
-    },
-  ];
+ 
   export const sortByOptions = [
     { value: "", name: "All" },
     {
@@ -181,3 +126,9 @@ export const countryOptions = [
       value: "publishedAt",
     },
   ];
+export const MockCard =[ {
+    dates: "2022-04-17T10:17:25Z",
+    description: "We will try to improve multiple social impact organizations websites. This can by achieved by providing the necessary tools for communication and network management",
+    image: "https://vee-activity-images.s3.eu-central-1.amazonaws.com/1615383130350_1610196209118_%D7%AA%D7%9E%D7%95%D7%A0%D7%94%20%D7%9E%D7%AA%D7%A0%D7%93%D7%91%D7%99%D7%9D%20%D7%92%D7%95%D7%95%D7%A0%D7%99%D7%9D%20VEE1.jpg",
+    title: "improving social impact organization websites",
+}];

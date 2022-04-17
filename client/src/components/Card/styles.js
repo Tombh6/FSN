@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { theme, device } from "../../globalStyle/theme";
-import Button from "../Button/Button";
 
 export const CardStyled = styled.div`
   background: ${theme.colors.white};
@@ -12,7 +11,7 @@ export const CardStyled = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-right: 10px;
-  height: 300px;
+  height: 200px;
   margin-bottom: 15px;
 
   @media ${device.mobile} {
@@ -110,7 +109,7 @@ export const ImageNotFound = styled.img`
   opacity: 0.5;
   height: 40%;
 `;
-export const CardBtn = styled(Button)`
+export const ButtonConatiner = styled.div`
   align-self: flex-end;
   margin-bottom: 10px;
   position: absolute;

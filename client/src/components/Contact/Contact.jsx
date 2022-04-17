@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 import emailjs from "emailjs-com";
-import "./styles.css";
+// import "./styles.css";
 
 const Result = () => {
   return (
