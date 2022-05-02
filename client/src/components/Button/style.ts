@@ -1,19 +1,23 @@
 import styled from "styled-components";
 import { theme } from "../../globalStyle/theme";
 
-export const ButtonStyled = styled.button`
+import { SIZE_TYPE, VARIANT } from "../../utils/types";
+
+import { ButtonProps } from "./Button";
+
+export const ButtonStyled = styled.button<ButtonProps>`
   height: 36px;
   width: ${(props) =>
-    props.size === "small"
-      ? `90px`
-      : props.size === "large"
+    props.size === SIZE_TYPE.small
+      ? `157px`
+      : props.size === SIZE_TYPE.large
       ? `714px`
       : "226px"};
   border-radius: 20px;
   background: ${(props) =>
-    props.variant === "secondery"
+    props.variant === VARIANT.secondery
       ? theme.colors.secondary_grey
-      : theme.colors.grayscale};
+      : theme.colors.primary_blue};
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -22,23 +26,23 @@ export const ButtonStyled = styled.button`
 
   &:hover {
     background: ${(props) =>
-      props.variant === "secondery"
+      props.variant === VARIANT.secondery
         ? theme.colors.secondary_grey_hover
         : theme.colors.primary_blue_hover};
   }
 `;
-export const Label = styled.p`
+export const Label = styled.p<{ rtl?: boolean }>`
   text-align: center;
   white-space: pre;
   text-transform: uppercase;
   color: ${theme.colors.white};
   font-size: 14px;
   letter-spacing: 0.25px;
-  padding-right: 7px;
-  padding-left: 70x;
+  padding-right: ${(props) => (props.rtl ? "0" : "7px")};
+  padding-left: ${(props) => (props.rtl ? "7px" : "70x")};
 `;
-export const Icon = styled.img`
+export const Icon = styled.img<{ rtl?: boolean }>`
   height: 17px;
-  transform: rotateY(180deg);
+  transform: ${(props) => (props.rtl ? "none" : "rotateY(180deg)")};
   filter: brightness(3);
 `;
