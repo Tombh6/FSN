@@ -1,14 +1,14 @@
 import { RefObject, useEffect, useRef } from "react";
 
-function useEventListener(
-  eventName,
-  handler,
-  element
+function useEventListener<T extends HTMLElement = HTMLDivElement>(
+  eventName: keyof WindowEventMap | string,
+  handler: (event: Event) => void,
+  element?: RefObject<T>
 ) {
-  const savedHandler = useRef();
+  const savedHandler = useRef<(event: Event) => void>();
 
   useEffect(() => {
-    const targetElement = element?.current || window;
+    const targetElement: T | Window = element?.current || window;
     if (!(targetElement && targetElement.addEventListener)) {
       return;
     }
@@ -17,7 +17,7 @@ function useEventListener(
       savedHandler.current = handler;
     }
 
-    const eventListener = (event) => {
+    const eventListener = (event: Event) => {
       if (!!savedHandler?.current) {
         savedHandler.current(event);
       }

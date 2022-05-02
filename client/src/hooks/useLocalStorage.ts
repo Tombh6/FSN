@@ -2,25 +2,26 @@ import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
 import useEventListener from "./useEventlistener";
 
+type SetValue<T> = Dispatch<SetStateAction<T>>;
 
-function useLocalStorage(key, initialValue) {
-  const readValue = () => {
+function useLocalStorage<T>(key: string, initialValue: T): [T, SetValue<T>] {
+  const readValue = (): T => {
     if (typeof window === "undefined") {
       return initialValue;
     }
 
     try {
       const item = window.localStorage.getItem(key);
-      return item ? (parseJSON(item)) : initialValue;
+      return item ? (parseJSON(item) as T) : initialValue;
     } catch (error) {
       console.warn(`Error reading localStorage key “${key}”:`, error);
       return initialValue;
     }
   };
 
-  const [storedValue, setStoredValue] = useState(readValue);
+  const [storedValue, setStoredValue] = useState<T>(readValue);
 
-  const setValue = (value) => {
+  const setValue: SetValue<T> = (value) => {
     if (typeof window == "undefined") {
       console.warn(
         `Tried setting localStorage key “${key}” even though environment is not a client`
@@ -57,7 +58,7 @@ function useLocalStorage(key, initialValue) {
 
 export default useLocalStorage;
 
-function parseJSON(value){
+function parseJSON<T>(value: string | null): T | undefined {
   try {
     return value === "undefined" ? undefined : JSON.parse(value ?? "");
   } catch (error) {
