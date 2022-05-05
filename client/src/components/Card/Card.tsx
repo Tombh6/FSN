@@ -5,7 +5,8 @@ import logo from "../../assets/icons/imageNotFound.svg";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import { isRTL } from "../../utils/utils";
-import favoriteIcon from "../../assets/icons/favorite.svg";
+import favoriteBefore from "../../assets/icons/favorite-before.svg";
+import favoriteAfter from "../../assets/icons/favorite-after.svg";
 
 import {
   BodyCard,
@@ -46,8 +47,8 @@ const Card = (props: CardProps) => {
   const [isFavorite, setIsFavorite] = useState(false);
   const clickFavorite = () => {
     props.favoriteFunc(!isFavorite);
-    setIsFavorite(!isFavorite); 
-  }
+    setIsFavorite(!isFavorite);
+  };
   return (
     <CardStyled>
       {props.image !== "null" && props.image && !imageError ? (
@@ -78,7 +79,10 @@ const Card = (props: CardProps) => {
           <DateCard>
             {moment.utc(props.date).format("dddd MMM DD, YYYY")}
           </DateCard>
-          <FavoriteIcon onClick={clickFavorite} src={favoriteIcon} />
+          <FavoriteIcon
+            onClick={clickFavorite}
+            src={isFavorite ? favoriteAfter : favoriteBefore}
+          />
         </Row>
         <Title rtl={rtl}>{props.title}</Title>
         <SourceCard rtl={rtl}>{props.source.name}</SourceCard>
