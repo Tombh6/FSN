@@ -3,37 +3,10 @@ import {
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
   User,
-  getAuth,
-  onAuthStateChanged,
 } from "firebase/auth";
 import React, { useContext, useState, useEffect } from "react";
 import { auth } from "../firebase-config";
-
-// onAuthStateChanged(auth, (currentUser) => {
-//   setUser(currentUser);
-// });
-// const register = async () => {
-//   try {
-//     const user = await createUserWithEmailAndPassword(
-//       auth,
-//       registerEmail,
-//       registerPassword
-//     );
-//   } catch (error: any) {
-//     console.log(error.message);
-//   }
-// };
-// const login = async () => {
-//   try {
-//     const user = await signInWithEmailAndPassword(
-//       auth,
-//       loginEmail,
-//       loginPassword
-//     );
-//   } catch (error: any) {
-//     console.log(error.message);
-//   }
-// };
+import { getAllFavorites } from "../services/favorites.api";
 
 const AuthContext = React.createContext<any>({});
 
@@ -44,7 +17,11 @@ export const useAuth = () => {
 export const AuthProvider = ({ children }: any) => {
   const [user, setUser] = useState<User | null>();
   const [loading, setLoading] = useState(true);
-  const [favoritesUser, setFavoritesUser] = useState<any[]>([]);
+  const [favoritesUser, setFavoritesUser] = useState<any>([]);
+
+  useEffect(() => {
+    user && getAllFavorites(user.uid).then((res) => setFavoritesUser(res.data));
+  }, [user]);
 
   const signup = (email: string, password: string) => {
     return createUserWithEmailAndPassword(auth, email, password);

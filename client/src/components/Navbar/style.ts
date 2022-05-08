@@ -10,6 +10,12 @@ export const NavbarContainer = styled.div`
   justify-content: space-between;
   align-items: center;
 `;
+export const Area = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+`;
 export const SearchContainer = styled.div`
   height: 75px;
   width: 100%;
@@ -25,10 +31,10 @@ export const SearchInput = styled.p`
 export const Container = styled.div`
   display: flex;
   justify-content: space-between;
-  width:90%;
+  width: 90%;
 
   @media ${device.tablet} {
-    width:80%;
+    width: 80%;
   }
   @media ${device.mobile} {
     justify-content: flex-end;
@@ -68,7 +74,7 @@ export const Icon = styled.img`
   }
 `;
 export const Avatar = styled.div`
-  background: ${theme.colors.primary_blue};
+  background: white;
   border-radius: 30px;
   display: flex;
   align-items: center;
