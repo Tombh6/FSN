@@ -49,11 +49,13 @@ const Card = (props: CardProps) => {
   const isMobileDevice = useMediaQuery({
     query: device.mobile,
   });
+
   useEffect(() => {
     extractKeywords(props.description);
   }, []);
   const extractKeywords = (description: string) => {
   };
+  
   let isFavorite =
     favoritesUser.length &&
     favoritesUser.filter((object: Article) => props.title === object.title)[0]
