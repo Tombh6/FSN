@@ -1,12 +1,13 @@
-import { Source } from "../../utils/types";
+import { Article, Source } from "../../utils/types";
 import moment from "moment";
 import { ButtonProps } from "../Button/Button";
 import logo from "../../assets/icons/imageNotFound.svg";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import { isRTL } from "../../utils/utils";
-import favoriteBefore from "../../assets/icons/favorite-before.svg";
-import favoriteAfter from "../../assets/icons/favorite-after.svg";
+import favoriteBefore from "../../assets/icons/favorite-svgrepo-com.svg";
+import favoriteAfter from "../../assets/icons/favorite-svgrepo-com (1).svg";
+import { useAuth } from "../../contexts/AuthContext";
 
 import {
   BodyCard,
@@ -22,7 +23,7 @@ import {
   ContainerImage,
   FavoriteIcon,
 } from "./style";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { device } from "../../globalStyle/theme";
 import { useMediaQuery } from "react-responsive";
 
@@ -39,15 +40,29 @@ export interface CardProps {
 }
 
 const Card = (props: CardProps) => {
+  const { favoritesUser } = useAuth();
   const [imageError, setImageError] = useState<boolean>(false);
   const rtl = isRTL(props.description) || isRTL(props.title) ? true : false;
   const isMobileDevice = useMediaQuery({
     query: device.mobile,
   });
-  const [isFavorite, setIsFavorite] = useState(false);
+
+  let isFavorite =
+    favoritesUser.length &&
+    favoritesUser.filter((object: Article) => props.title === object.title)[0]
+      ? true
+      : false;
+
+  useEffect(() => {
+    const items = favoritesUser.filter(
+      (object: Article) => props.title === object.title
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    isFavorite = items[0] ? true : false;
+  }, [favoritesUser]);
+
   const clickFavorite = () => {
     props.favoriteFunc(!isFavorite);
-    setIsFavorite(!isFavorite);
   };
   return (
     <CardStyled>

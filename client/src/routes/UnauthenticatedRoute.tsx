@@ -1,19 +1,16 @@
-import {useAuthState } from "../contexts/AuthContext";
 import Welcome from "../pages/Loginpage/Welcome";
-import logo from "../assets/icons/logo.svg";
 import ForgotPassword from "../pages/Loginpage/ForgotPassword";
 import { Route, Routes } from "react-router-dom";
 import Login from "../pages/Loginpage/Login";
 import Signup from "../pages/Loginpage/Signup";
 import { Body, Header, LoginContainer, Logo } from "../pages/Loginpage/style";
+import newLogo from "../assets/icons/new logo.png";
 
 const UnauthenticatedRoute = () => {
-  const { isAuthenticated } = useAuthState();
-  console.log(`UnauthenticatedRoute: ${isAuthenticated}`);
   return (
     <LoginContainer>
       <Header>
-        <Logo src={logo}></Logo>
+        <Logo src={newLogo}></Logo>
       </Header>
       <Body>
         <Routes>
