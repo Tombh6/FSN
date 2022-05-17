@@ -122,23 +122,26 @@ export const calculateSourcesChart = (articles: Article[]) => {
   return { array: sourcesChart, numberOfArticles: sourcesChart.length };
 };
 export const calculateDatesChart = (articles: Article[]) => {
-  let isEmpty = true; 
-  const datesChart: { name: string; amount: number , date: string}[] = [];
-  const sortedArray = articles.sort((a,b) => new Date(a.publishedAt).valueOf() - new Date(b.publishedAt).valueOf());
+  let isEmpty = true;
+  const datesChart: { name: string; amount: number; date: string }[] = [];
+  const sortedArray = articles.sort(
+    (a, b) =>
+      new Date(a.publishedAt).valueOf() - new Date(b.publishedAt).valueOf()
+  );
   sortedArray.forEach((article) => {
-    let value = moment.utc(article.publishedAt).format("DD/MM");  
+    let value = moment.utc(article.publishedAt).format("DD/MM");
     const index = datesChart.findIndex(({ name }) => value === name);
-      if (index !== -1) {
-        datesChart[index].amount++;
-      } else {
-        datesChart.push({ name: value, amount: 1 , date: article.publishedAt});
-      }
+    if (index !== -1) {
+      datesChart[index].amount++;
+    } else {
+      datesChart.push({ name: value, amount: 1, date: article.publishedAt });
+    }
   });
-  if(datesChart.length === 1){
-    datesChart.push({name:"",amount:0,date:""})
-    datesChart.unshift({name:"",amount:0,date:""})
-  } 
- 
+  if (datesChart.length === 1) {
+    datesChart.push({ name: "", amount: 0, date: "" });
+    datesChart.unshift({ name: "", amount: 0, date: "" });
+  }
+
   datesChart.forEach((day) => {
     if (day.amount > 0) {
       isEmpty = false;
@@ -157,20 +160,18 @@ export const isRTL = (s: string) => {
   return rtlDirCheck.test(s);
 };
 
-export const calculateTagsChart = (articles: Article[]) => {
+export const calculateTagsChart = (names: string[]) => {
   const tagsChart: DataChart[] = [];
-  articles.forEach((article) => {
-    article.tags?.forEach((tag) => {
-      const index = tagsChart.findIndex(({ name }) => name === tag);
-      if (index !== -1) {
-        tagsChart[index].value++;
-      } else {
-        tagsChart.push({ name: tag, value: 1 });
-      }
-    });
+  names.forEach((tag) => {
+    const index = tagsChart.findIndex(({ name }) => name === tag);
+    if (index !== -1) {
+      tagsChart[index].value++;
+    } else {
+      tagsChart.push({ name: tag, value: 1 });
+    }
   });
-  tagsChart.forEach((month) => {
-    month.value = (month.value * 100) / articles.length;
+  tagsChart.forEach((tag) => {
+    tag.value = Math.round((tag.value * 100) / names.length);
   });
   return tagsChart;
 };
