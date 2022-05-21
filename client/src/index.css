@@ -10,7 +10,7 @@ html {
 * {
   box-sizing: content-box !important;
 }
-p {
+p{
   margin-top: revert !important;
 }
 body {

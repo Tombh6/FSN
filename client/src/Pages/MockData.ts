@@ -1,5 +1,4 @@
-
-import { ENDPOINTS } from "../../utils/types";
+import { ENDPOINTS } from "../utils/types";
 
 export const filterNavbarOptions = [
   {
