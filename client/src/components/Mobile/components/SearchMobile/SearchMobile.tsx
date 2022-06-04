@@ -30,7 +30,7 @@ const SearchMobile = (props: SearchMobileProps) => {
 
   const keyDownHandler = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.code === "Enter") {
-      submitHandler(event);
+      submitHandler(event.currentTarget.value);
       props.onClose(false);
     }
   };
@@ -53,7 +53,7 @@ const SearchMobile = (props: SearchMobileProps) => {
             onKeyDown={keyDownHandler}
           ></Input>
           {searchValue && (
-            <IconHover style={{marginRight: '20px'}}>
+            <IconHover style={{ marginRight: "20px" }}>
               <DeleteIcon
                 alt="deleteIcon"
                 onClick={() => setSearchValue("")}

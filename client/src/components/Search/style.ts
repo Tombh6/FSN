@@ -68,7 +68,7 @@ export const Input = styled.input`
     color: ${theme.colors.text_lightblue};
   }
 `;
-export const Icon = styled.input`
+export const Icon = styled.img`
   width: 5%;
   height: 23px;
   padding: 15px 18px 15px 18px;

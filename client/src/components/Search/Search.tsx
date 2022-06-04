@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import useInput from "../../hooks/useSearch";
 import "./style";
 import searchIcon from "../../assets/icons/search.svg";
@@ -15,6 +15,7 @@ import Filter, { FilterProps } from "../Filter/Filter";
 import SearchDropdown from "../SearchDropdown/SearchDropdown";
 import useOnClickOutside from "../../hooks/useOnClickOutside";
 import deleteIcon from "../../assets/icons/exit.svg";
+import { debounce } from "lodash";
 
 export interface SearchProps {
   searchFunc: (value: string) => void;
@@ -36,40 +37,42 @@ const Search: React.FC<SearchProps> = (props: SearchProps) => {
   } = useInput("");
   const searchFormRef = useRef(null);
 
+  const debouncedSearch = useRef(
+    debounce(async (criteria) => {
+      await submitHandler(criteria);
+    }, 3000)
+  ).current;
+
+  useEffect(() => {
+    return () => {
+      debouncedSearch.cancel();
+    };
+  }, [debouncedSearch]);
+
   const keyDownHandler = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.code === "Enter") {
-      submitHandler(event);
+      submitHandler(event.currentTarget.value);
       setIsTouched(false);
     }
   };
 
-  // const updateQuery = () => {
-  //   submitHandler();
-  // };
-
-  // const delayedQuery = useCallback(debounce(updateQuery, 500), [searchValue]);
-
-  // useEffect(() => {
-  //   delayedQuery();
-  //   return delayedQuery.cancel;
-  // }, [searchValue, delayedQuery]);
-
-  const valueChangeHandler = (e: React.FormEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
     setSearchValue(e.currentTarget.value);
+    debouncedSearch(e.currentTarget.value);
   };
 
   useOnClickOutside(searchFormRef, () => setIsTouched(false));
 
   return (
     <SearchForm hasFocus={isTouched} ref={searchFormRef}>
-      <Icon onClick={submitHandler} type="image" src={searchIcon} />
+      <Icon alt="" src={searchIcon} />
       <InputContainer>
         <Input
           ref={searchInputRef}
           type="text"
           id="search"
           value={searchValue}
-          onChange={valueChangeHandler}
+          onChange={handleChange}
           onFocus={() => setIsTouched(true)}
           placeholder="Search"
           autoComplete="off"
@@ -82,7 +85,7 @@ const Search: React.FC<SearchProps> = (props: SearchProps) => {
               onClick={() => setSearchValue("")}
               src={deleteIcon}
             />
-         </IconHover>
+          </IconHover>
         )}
       </InputContainer>
       {isTouched && filterRecentItems.length ? (
