@@ -22,22 +22,33 @@ export interface ArticlesProps {
 }
 
 const Articles = (props: ArticlesProps) => {
-  const { favoritesUser, setFavoritesUser } = useAuth();
+  const { favoritesUser, setFavoritesUser, user } = useAuth();
   const cards = new Array(4);
   for (let i = 0; i < 4; i++) {
     cards.push(<SkeletonCard key={i} />);
   }
+
   const handleClickFavorite = (article: Article, state: boolean) => {
     if (state) {
-      setFavoritesUser((previous: any) => [...previous, article]);
-      createFavorite(article).then((res) => console.log(res));
-    } else {
-      setFavoritesUser(
-        favoritesUser.filter(
-          (object: Article) => article.title !== object.title
-        )
+      createFavorite(article, user.uid).then((res) =>
+        setFavoritesUser((previous: any) => [
+          ...previous,
+          { id: res.data._id, title: article.title },
+        ])
       );
-      deleteFavorite(article.title);
+    } else {
+      const item = favoritesUser.filter(
+        (object: Article) => article.title === object.title
+      );
+      deleteFavorite(item[0]?._id)
+        .then(() => "delete")
+        .then(
+          setFavoritesUser(
+            favoritesUser.filter(
+              (object: Article) => article.title !== object.title
+            )
+          )
+        );
     }
   };
   return props.error ? (
@@ -68,7 +79,7 @@ const Articles = (props: ArticlesProps) => {
               title={article.title}
               source={article.source}
               description={article.description}
-              tags={[]}
+              tags={['sprort', 'corona', 'entertainment', 'news']}
               favoriteFunc={(state) => handleClickFavorite(article, state)}
               button={{
                 onClick: () => {

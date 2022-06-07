@@ -19,6 +19,7 @@ export const LoginContainer = styled.div`
 export const Header = styled.div`
   background: ${theme.colors.grayscale};
   width: 35%;
+  align-items: center;
   display: flex;
   justify-content: center;
   @media ${device.tablet} {
@@ -27,10 +28,12 @@ export const Header = styled.div`
   }
 `;
 export const Logo = styled.img`
-  width: 50%;
+  height: 350px;
+  width: 350px;
   padding: 10px;
   @media ${device.tablet} {
-    height: 60%;
+    height: 220px;
+    width: 220px;
     align-self: center;
   }
 `;
@@ -72,6 +75,11 @@ export const Title = styled.div`
   @media ${device.mobile} {
     font-size: 30px;
   }
+`;
+export const HeadTitle = styled.div`
+  font-weight: 300;
+  font-size: 24px;
+  color: ${theme.colors.purple_blue};
 `;
 export const Description = styled.div`
   font-weight: 100;

@@ -17,3 +17,9 @@ export const getSourcesFromApi = async (filtersState: any) => {
     filtersState,
   });
 };
+
+export const getKeywords = async (text: string) => {
+  return axios.post(`${Config.BASE_URL}/articles/keyword`, {
+    text,
+  });
+};

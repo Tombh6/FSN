@@ -64,7 +64,7 @@ const Navbar: React.FC<NavbarProps> = (props: NavbarProps) => {
         })
       );
     });
-  }, [favoritesUser]);
+  }, [user.uid, favoritesUser]);
 
   return isMobileDevice && filtersState.searchInput ? (
     <SearchContainer>

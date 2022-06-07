@@ -9,22 +9,22 @@ export class FavoritesService {
     @InjectModel(Favorite.name)
     private readonly FavoriteModel: Model<FavoriteDocument>,
   ) {}
-  async create(favoriteArticle: any): Promise<Favorite> {
-    const favorite = new this.FavoriteModel(favoriteArticle);
-    return favorite.save();
-    // const doc = (await favorite.save()).toObject();
-    // return doc;
+  async create(favoriteArticle: any, userId: string): Promise<Favorite> {
+    const favorite = new this.FavoriteModel({ ...favoriteArticle, userId });
+    // return favorite.save();
+    const doc = (await favorite.save()).toObject();
+    return doc;
   }
 
-  findAll() {
-    return `This action returns all favorites`;
+  async findAll(userId: string) {
+    return this.FavoriteModel.find({ userId: userId });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} favorite`;
+  async findOne(id: string) {
+    return this.FavoriteModel.findById({ _id: id });
   }
 
-  remove(title: string) {
-    return `This action removes a #${title} favorite`;
+  async remove(id: string) {
+    return this.FavoriteModel.deleteOne({ _id: id });
   }
 }

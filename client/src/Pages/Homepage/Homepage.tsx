@@ -157,7 +157,7 @@ const Homepage = () => {
     } catch (error) {
       setSourcesEverythingOptions([]);
     }
-  }, [filtersState, filtersState.language,dispatch]);
+  }, [filtersState, filtersState.language, dispatch]);
 
   return (
     <HomepageContainer>
@@ -185,7 +185,7 @@ const Homepage = () => {
           searchFunc={(value: string) =>
             dispatch(filtersActions.setSearchInput(value))
           }
-          signOutFunc={() => navigate(`/`)}
+          signOutFunc={() => logout()}
         >
           YC
         </Navbar>

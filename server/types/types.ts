@@ -11,3 +11,7 @@ export type Article = {
   url: string;
   tags?: string[];
 };
+export enum ENDPOINTS {
+  topheadlines = 'top-headlines',
+  everything = 'everything',
+}

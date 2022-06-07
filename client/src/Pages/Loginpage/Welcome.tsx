@@ -1,12 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import { SIZE_TYPE, VARIANT } from "../../utils/types";
-import { BodyContainer, ButtonLogin, Description, Title } from "./style";
+import { BodyContainer, ButtonLogin, Description, HeadTitle, Title } from "./style";
 
 const Welcome = () => {
     const navigate = useNavigate();
   return (
     <BodyContainer>
-      <Title>Welcome to Dispatcher</Title>
+      <Title>Welcome to FSN</Title>
+      <HeadTitle>Filter Search News</HeadTitle>
       <Description>
         Locate articles and breaking news headlines from news sources and blogs
         across the web

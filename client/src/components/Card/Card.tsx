@@ -65,7 +65,7 @@ const Card = (props: CardProps) => {
         console.log(err);
       }
     }
-  }, [props.description, dispatch]);
+  }, [props.description,dispatch]);
 
   let isFavorite =
     favoritesUser.length &&
