@@ -1,5 +1,6 @@
-import { useRef, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../store";
 import { filtersActions } from "../store/slicers/filtersSlice";
 import { isNotEmpty } from "../utils/utils";
 import useLocalStorage from "./useLocalStorage";
@@ -10,6 +11,11 @@ const useInput = (value: string) => {
   const [isTouched, setIsTouched] = useState(false);
   const [recentItems, setRecentItems] = useLocalStorage<string[]>("items", []);
   const searchInputRef = useRef<HTMLInputElement | null>(null);
+  const filtersState = useSelector((state: RootState) => state.filters);
+
+  useEffect(() => {
+    setSearchValue(filtersState.searchInput);
+  }, [filtersState.searchInput]);
 
   const valueChangeHandler = (e: React.FormEvent<HTMLInputElement>) => {
     setSearchValue(e.currentTarget.value);
@@ -19,7 +25,7 @@ const useInput = (value: string) => {
     (search) => search.includes(searchValue) && searchValue !== search
   );
 
-  const submitHandler = (criteria:string) => {
+  const submitHandler = (criteria: string) => {
     if (!recentItems.includes(criteria) && isNotEmpty(criteria)) {
       setRecentItems((recentItems) => [...recentItems, criteria]);
     }

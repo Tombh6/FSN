@@ -142,6 +142,12 @@ export const Tag = styled.p`
   font-family: "Poppins";
   font-size: 12px;
   line-height: 14px;
+  cursor: pointer;
+
+  &:hover {
+    background: ${theme.colors.primary_blue_hover};
+    color: white;
+  }
 `;
 export const Row = styled.div<{ rtl: boolean }>`
   display: flex;

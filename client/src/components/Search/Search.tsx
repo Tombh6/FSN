@@ -16,6 +16,8 @@ import SearchDropdown from "../SearchDropdown/SearchDropdown";
 import useOnClickOutside from "../../hooks/useOnClickOutside";
 import deleteIcon from "../../assets/icons/exit.svg";
 import { debounce } from "lodash";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
 
 export interface SearchProps {
   searchFunc: (value: string) => void;
@@ -23,6 +25,7 @@ export interface SearchProps {
 }
 
 const Search: React.FC<SearchProps> = (props: SearchProps) => {
+  const filtersState = useSelector((state: RootState) => state.filters);
   const {
     searchValue,
     isTouched,
@@ -34,7 +37,7 @@ const Search: React.FC<SearchProps> = (props: SearchProps) => {
     onChooseRecentItem,
     onDeleteRecentItem,
     onClearRecentItems,
-  } = useInput("");
+  } = useInput(filtersState.searchInput);
   const searchFormRef = useRef(null);
 
   const debouncedSearch = useRef(

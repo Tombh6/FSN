@@ -25,6 +25,8 @@ let ArticlesService = class ArticlesService {
             };
             const [result] = await client.analyzeEntities({ document });
             const entities = result.entities;
+            const saliences = entities.map(({ salience }) => salience);
+            console.log(saliences);
             return entities.map(({ name }) => name);
         };
     }

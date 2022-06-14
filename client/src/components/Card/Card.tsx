@@ -29,8 +29,11 @@ import { useEffect, useState } from "react";
 import { device } from "../../globalStyle/theme";
 import { useMediaQuery } from "react-responsive";
 import { getKeywords } from "../../services/articles.api";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { tagsActions } from "../../store/slicers/tagsSlice";
+import { filtersActions } from "../../store/slicers/filtersSlice";
+import { RootState } from "../../store";
+import Tooltip from "@mui/material/Tooltip";
 
 export interface CardProps {
   date: string;
@@ -46,6 +49,7 @@ export interface CardProps {
 
 const Card = (props: CardProps) => {
   const dispatch = useDispatch();
+  const filtersState = useSelector((state: RootState) => state.filters);
   const { favoritesUser } = useAuth();
   const [imageError, setImageError] = useState<boolean>(false);
   const rtl = isRTL(props.description) || isRTL(props.title) ? true : false;
@@ -55,7 +59,7 @@ const Card = (props: CardProps) => {
   const [tags, setTags] = useState([]);
 
   useEffect(() => {
-    if (props.description) {
+    if (props.description && filtersState.country) {
       try {
         getKeywords(props.description).then((res) => {
           setTags(res.data);
@@ -65,7 +69,7 @@ const Card = (props: CardProps) => {
         console.log(err);
       }
     }
-  }, [props.description,dispatch]);
+  }, [props.description, dispatch]);
 
   let isFavorite =
     favoritesUser.length &&
@@ -83,6 +87,16 @@ const Card = (props: CardProps) => {
 
   const clickFavorite = () => {
     props.favoriteFunc(!isFavorite);
+  };
+  const searchByTag = (tag: string) => {
+    if (!tag.includes("+")) {
+      dispatch(filtersActions.setSearchInput(tag));
+    }
+  };
+  const handleOtherTags = (amount: number) => {
+    return tags.slice(tags.length - amount, tags.length).map((tag) => {
+      return <p>{tag}</p>;
+    });
   };
   return (
     <CardStyled>
@@ -114,11 +128,26 @@ const Card = (props: CardProps) => {
           <DateCard>
             {moment.utc(props.date).format("dddd MMM DD, YYYY")}
           </DateCard>
-          <TagsContainer>
-            {renderTags(tags, isMobileDevice).map((tag, index) => {
-              return <Tag key={index}>{tag}</Tag>;
-            })}
-          </TagsContainer>
+          {tags.length ? (
+            <TagsContainer>
+              {renderTags(tags, isMobileDevice).arr.map((tag, index) => {
+                return (
+                  <Tag onClick={() => searchByTag(tag)} key={index}>
+                    {tag}
+                  </Tag>
+                );
+              })}
+              <Tooltip
+                placement="top"
+                arrow
+                title={handleOtherTags(renderTags(tags, isMobileDevice).amount)}
+              >
+                <Tag>+{renderTags(tags, isMobileDevice).amount}</Tag>
+              </Tooltip>
+            </TagsContainer>
+          ) : (
+            ""
+          )}
           <FavoriteIcon
             onClick={clickFavorite}
             src={isFavorite ? favoriteAfter : favoriteBefore}
