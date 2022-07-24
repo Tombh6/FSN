@@ -146,7 +146,7 @@ const Homepage = () => {
     try {
       getSourcesFromApi(filtersState).then((res) => {
         setSourcesEverythingOptions([{ value: "", name: "All" }]);
-        dispatch(filtersActions.setSourceEverything(""));
+
         res.data.sources.forEach((source: any) => {
           setSourcesEverythingOptions((recentItems) => [
             ...recentItems,

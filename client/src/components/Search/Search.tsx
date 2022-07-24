@@ -43,7 +43,7 @@ const Search: React.FC<SearchProps> = (props: SearchProps) => {
   const debouncedSearch = useRef(
     debounce(async (criteria) => {
       await submitHandler(criteria);
-    }, 3000)
+    }, 2000)
   ).current;
 
   useEffect(() => {
@@ -85,7 +85,7 @@ const Search: React.FC<SearchProps> = (props: SearchProps) => {
           <IconHover>
             <DeleteIcon
               alt="deleteIcon"
-              onClick={() => setSearchValue("")}
+              onClick={() => submitHandler("")}
               src={deleteIcon}
             />
           </IconHover>
@@ -94,7 +94,7 @@ const Search: React.FC<SearchProps> = (props: SearchProps) => {
       {isTouched && filterRecentItems.length ? (
         <SearchDropdown
           items={filterRecentItems}
-          onChooseItem={onChooseRecentItem}
+          onChooseItem={submitHandler}
           onDeleteItem={onDeleteRecentItem}
           onClearItems={onClearRecentItems}
         />

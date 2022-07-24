@@ -95,7 +95,11 @@ const Card = (props: CardProps) => {
   };
   const handleOtherTags = (amount: number) => {
     return tags.slice(tags.length - amount, tags.length).map((tag) => {
-      return <p>{tag}</p>;
+      return (
+        <p style={{ cursor: "pointer" }} onClick={() => searchByTag(tag)}>
+          {tag}
+        </p>
+      );
     });
   };
   return (

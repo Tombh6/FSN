@@ -12,6 +12,7 @@ import {
   SearchInput,
   Area,
 } from "./style";
+import { useNavigate } from "react-router-dom";
 import logo from "../../assets/icons/new logo.png";
 import userIcon from "../../assets/icons/icons8-user-50.png";
 import likeIcon from "../../assets/icons/favorite-svgrepo-com (1).svg";
@@ -43,6 +44,7 @@ const Navbar: React.FC<NavbarProps> = (props: NavbarProps) => {
   const [showSignoutBox, setShowSignoutBox] = useState(false);
   const filtersState = useSelector((state: RootState) => state.filters);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [isPaneOpen, setPaneOpen] = useState(false);
   const [dataFavorites, setDataFavorites] = useState([]);
   const isMobileDevice = useMediaQuery({
@@ -85,7 +87,11 @@ const Navbar: React.FC<NavbarProps> = (props: NavbarProps) => {
     </SearchContainer>
   ) : (
     <NavbarContainer>
-      <Logo src={logo} />
+      <Logo
+        style={{ cursor: "pointer" }}
+        onClick={() => navigate("/")}
+        src={logo}
+      />
       <Container>
         {!isMobileDevice && (
           <Search
