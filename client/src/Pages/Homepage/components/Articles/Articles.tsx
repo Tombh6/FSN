@@ -79,7 +79,6 @@ const Articles = (props: ArticlesProps) => {
               title={article.title}
               source={article.source}
               description={article.description}
-              tags={['sprort', 'corona', 'entertainment', 'news']}
               favoriteFunc={(state) => handleClickFavorite(article, state)}
               button={{
                 onClick: () => {

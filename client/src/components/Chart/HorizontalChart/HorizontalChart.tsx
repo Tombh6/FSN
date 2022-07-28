@@ -19,7 +19,7 @@ const HorizontalChart = (props: HorizontalChartProps) => {
               <Row key={index}>
                 <SourceName>{entry.name}</SourceName>
                 <Data>
-                  <Precentage>{entry.value}%</Precentage>
+                  <Precentage>{entry.value}</Precentage>
                   <ProgressBar>
                     <ProgressBarUsed
                       style={{ width: `${entry.value}px` }}

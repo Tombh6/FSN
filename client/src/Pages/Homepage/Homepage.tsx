@@ -38,6 +38,7 @@ import { getlocationFromApi } from "../../services/getLocationAxios";
 import {
   calculateDatesChart,
   calculateSourcesChart,
+  calculateTagsChart,
   handleError,
 } from "../../utils/utils";
 import FilterMobile from "../../components/Mobile/components/FilterMobile/FilterMobile";
@@ -316,7 +317,7 @@ const Homepage = () => {
                   ChartTitle="Dates"
                 />
                 <HorizontalChart
-                  HorizontalChartData={tagsState.tags}
+                  HorizontalChartData={calculateTagsChart(tagsState.tags)}
                   ChartTitle={"Tags"}
                 />
               </ChartContainer>

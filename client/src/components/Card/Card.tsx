@@ -41,7 +41,6 @@ export interface CardProps {
   title: string;
   source: Source;
   description: string;
-  tags: string[];
   button: ButtonProps;
   location: { name: string; value: string };
   favoriteFunc: (state: boolean) => void;
@@ -62,8 +61,9 @@ const Card = (props: CardProps) => {
     if (props.description && filtersState.country) {
       try {
         getKeywords(props.description).then((res) => {
-          setTags(res.data);
-          dispatch(tagsActions.setTags(calculateTagsChart(res.data)));
+          const tags = res.data.splice(1, 5);
+          setTags(res.data.splice(1, 3));
+          dispatch(tagsActions.setTags(tags));
         });
       } catch (err) {
         console.log(err);

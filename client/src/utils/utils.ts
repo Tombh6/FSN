@@ -82,7 +82,7 @@ export const renderTags = (tags: string[], isMobileDevice: boolean) => {
   if (tags.length > 1 && isMobileDevice) {
     amount = tags.length - MAX_TAGS_MOBILE;
   }
-  return { arr:newTagsArr, amount };
+  return { arr: newTagsArr, amount };
 };
 export const isNotEmpty = (value: string) => {
   return value.trim() !== "";
@@ -118,6 +118,7 @@ export const calculateSourcesChart = (articles: Article[]) => {
   }
   return { array: sourcesChart, numberOfArticles: sourcesChart.length };
 };
+
 export const calculateDatesChart = (articles: Article[]) => {
   let isEmpty = true;
   const datesChart: { name: string; amount: number; date: string }[] = [];
@@ -167,8 +168,14 @@ export const calculateTagsChart = (names: string[]) => {
       tagsChart.push({ name: tag, value: 1 });
     }
   });
-  tagsChart.forEach((tag) => {
-    tag.value = Math.round((tag.value * 100) / names.length);
+
+  tagsChart.map(
+    (tag) => (tag.value = Math.round((tag.value * 100) / tagsChart.length))
+  );
+
+  tagsChart.sort((a, b) => {
+    return b.value - a.value;
   });
-  return tagsChart;
+
+  return tagsChart.slice(0, 7);
 };

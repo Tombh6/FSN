@@ -7,7 +7,7 @@ const tagsSlice = createSlice({
   initialState,
   reducers: {
     setTags(state, action) {
-      state.tags = action.payload;
+      state.tags = state.tags.concat(action.payload);
     },
   },
 });
