@@ -4,7 +4,7 @@ import { ButtonProps } from "../Button/Button";
 import newLogo from "../../assets/icons/new logo.png";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
-import { calculateTagsChart, isRTL, renderTags } from "../../utils/utils";
+import { isRTL, renderTags } from "../../utils/utils";
 import favoriteBefore from "../../assets/icons/favorite-svgrepo-com.svg";
 import favoriteAfter from "../../assets/icons/favorite-svgrepo-com (1).svg";
 import { useAuth } from "../../contexts/AuthContext";
@@ -30,10 +30,10 @@ import { device } from "../../globalStyle/theme";
 import { useMediaQuery } from "react-responsive";
 import { getKeywords } from "../../services/articles.api";
 import { useDispatch, useSelector } from "react-redux";
-import { tagsActions } from "../../store/slicers/tagsSlice";
 import { filtersActions } from "../../store/slicers/filtersSlice";
 import { RootState } from "../../store";
 import Tooltip from "@mui/material/Tooltip";
+import { tagsActions } from "../../store/slicers/tagsSlice";
 
 export interface CardProps {
   date: string;
@@ -62,14 +62,14 @@ const Card = (props: CardProps) => {
       try {
         getKeywords(props.description).then((res) => {
           const tags = res.data.splice(1, 5);
-          setTags(res.data.splice(1, 3));
-          dispatch(tagsActions.setTags(tags));
+          setTags(tags);
+          dispatch(tagsActions.setTags(tags[0]));
         });
       } catch (err) {
         console.log(err);
       }
     }
-  }, [props.description, dispatch]);
+  }, [filtersState.country, dispatch, props.description]);
 
   let isFavorite =
     favoritesUser.length &&

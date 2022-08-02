@@ -158,9 +158,10 @@ export const isRTL = (s: string) => {
   return rtlDirCheck.test(s);
 };
 
-export const calculateTagsChart = (names: string[]) => {
+export const calculateTagsChart = (tags: string[], numOfArticles: number) => {
   const tagsChart: DataChart[] = [];
-  names.forEach((tag) => {
+
+  tags.forEach((tag) => {
     const index = tagsChart.findIndex(({ name }) => name === tag);
     if (index !== -1) {
       tagsChart[index].value++;
@@ -169,13 +170,9 @@ export const calculateTagsChart = (names: string[]) => {
     }
   });
 
-  tagsChart.map(
-    (tag) => (tag.value = Math.round((tag.value * 100) / tagsChart.length))
-  );
-
   tagsChart.sort((a, b) => {
     return b.value - a.value;
   });
-
-  return tagsChart.slice(0, 7);
+  const newArray = tagsChart.slice(0, 10);
+  return newArray;
 };

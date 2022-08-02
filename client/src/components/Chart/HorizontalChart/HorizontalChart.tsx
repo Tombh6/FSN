@@ -14,21 +14,27 @@ const HorizontalChart = (props: HorizontalChartProps) => {
       <Chart.Header>{props.ChartTitle}</Chart.Header>
       <Chart.Body>
         <DataContainer>
-          {props.HorizontalChartData.map((entry, index) => {
-            return (
-              <Row key={index}>
-                <SourceName>{entry.name}</SourceName>
-                <Data>
-                  <Precentage>{entry.value}</Precentage>
-                  <ProgressBar>
-                    <ProgressBarUsed
-                      style={{ width: `${entry.value}px` }}
-                    ></ProgressBarUsed>
-                  </ProgressBar>
-                </Data>
-              </Row>
-            );
-          })}
+          {props.HorizontalChartData.length ? (
+            props.HorizontalChartData.map((entry, index) => {
+              return (
+                <Row key={index}>
+                  <SourceName>{entry.name}</SourceName>
+                  <Data>
+                    <Precentage>{entry.value}</Precentage>
+                    <ProgressBar>
+                      <ProgressBarUsed
+                        style={{ width: `${entry.value}px` }}
+                      ></ProgressBarUsed>
+                    </ProgressBar>
+                  </Data>
+                </Row>
+              );
+            })
+          ) : (
+            <Chart.Body>
+              <Chart.NoData />
+            </Chart.Body>
+          )}
         </DataContainer>
       </Chart.Body>
     </Chart>

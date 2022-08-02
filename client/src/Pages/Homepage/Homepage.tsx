@@ -317,7 +317,10 @@ const Homepage = () => {
                   ChartTitle="Dates"
                 />
                 <HorizontalChart
-                  HorizontalChartData={calculateTagsChart(tagsState.tags)}
+                  HorizontalChartData={calculateTagsChart(
+                    tagsState.tags,
+                    articles.length
+                  )}
                   ChartTitle={"Tags"}
                 />
               </ChartContainer>
